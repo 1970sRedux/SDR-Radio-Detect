@@ -1,6 +1,8 @@
 # SDR-Radio-Detect
 
-This is a theoretical sdr_detect app.
+This is a theoretical (not fully tested) sdr radio detection app using python.
+
+It's for a Linux OS, tested in Debian.
 
 Passive monitor for a cheap R820T2 RTL-SDR and a stock telescopic antenna. 
 Name ISM sensors, baseline *your* devices, flag new IDs; scan other bands...
@@ -95,20 +97,10 @@ A `LEAD` after that is “this ID was not in the house inventory.” It is not a
 
 Pager and handheld rows are **energy only**. The script will not decode POCSAG/FLEX content.
 
-## Limits (same as the radio)
+## Alert Commands
 
-- 2.4 MHz at a time; survey hops
-- 8-bit ADC; strong FM will hide weak sensors — lower `--gain`
-- No 2.4 / 5.8 GHz (Wi-Fi cameras, BLE trackers, most drones)
-- One whip, no direction
-- Short `survey` dwells miss a button that is not pressed in those 15 seconds — that is what `watch` is for
+#sdr alert command hops targets and alert only when signal goes from quiet to active
+python3 sdr_alert.py --region us --gain 20
 
-## Files written
-
-```
-sdr_detect/
-  sdr_detect.py
-  known_devices.json          # after learn
-  state/<timestamp>/*.csv     # rtl_power dumps
-  state/report_<mode>_<ts>.json
-```
+#subset more in depth
+python3 sdr_alert.py --region us --only REMOTE315,REMOTE433,ADSB,GSM900,FRS_GMRS --beep
