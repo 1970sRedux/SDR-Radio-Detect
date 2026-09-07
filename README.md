@@ -116,14 +116,16 @@ python3 sdr_detect.py watch --region us --gain 20
    
 python3 sdr_detect.py survey --region us --dwell 15 --gain 20
 
-Health-only (FM + weather radio) if you just want to know the stick works:
+* Health-only (FM + weather radio) if you just want to know the stick works:
 
 python3 sdr_detect.py health --region us
 
 ## Alert Commands
 
 #sdr alert command hops targets and alert only when signal goes from quiet to active
+
 python3 sdr_alert.py --region us --gain 20
 
 #subset more in depth
+
 python3 sdr_alert.py --region us --only REMOTE315,REMOTE433,ADSB,GSM900,FRS_GMRS --beep
