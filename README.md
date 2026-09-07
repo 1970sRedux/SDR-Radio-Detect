@@ -58,6 +58,7 @@ python3 sdr_detect.py full --region us --seconds 120 --dwell 15
 
 `--ppm 50` if you already measured a crystal offset. `--gain 12` in a dense FM/GSM area.
 
+
 ## Whip length (stock telescopic)
 
 Set length *before* the matching mode. Measure connector to tip.
@@ -96,6 +97,23 @@ A `LEAD` after that is “this ID was not in the house inventory.” It is not a
 - `quiet` — nothing stood out in that short snapshot (normal for bursty remotes)
 
 Pager and handheld rows are **energy only**. The script will not decode POCSAG/FLEX content.
+
+## Sample Command Run Order
+
+# 1. Whip ~17 cm (433) or ~24 cm (315). Census whatever is already transmitting.
+python3 sdr_detect.py inventory --region us --seconds 180 --gain 20
+
+# 2. Same listen, freeze those IDs as "yours". Press your own fob/doorbell during this.
+python3 sdr_detect.py learn --region us --seconds 600 --gain 20
+
+# 3. Live: KNOWN vs LEAD
+python3 sdr_detect.py watch --region us --gain 20
+
+# 4. Collapse whip to ~7 cm first. Energy-only look at the rest of the list.
+python3 sdr_detect.py survey --region us --dwell 15 --gain 20
+
+# Health-only (FM + weather radio) if you just want to know the stick works:
+python3 sdr_detect.py health --region us
 
 ## Alert Commands
 
