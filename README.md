@@ -18,7 +18,7 @@ sudo apt install rtl-sdr rtl-433
 Plug the dongle in, then:
 
 ```bash
-rtl_test          # should print Rafael Micro R820T2
+rtl_test          # should print Rafael Micro R820T2 or something similar
 python3 sdr_detect.py check
 ```
 
